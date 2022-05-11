@@ -1,3 +1,5 @@
+import NextLink from "next/link";
+
 import {
   Box,
   Flex,
@@ -22,10 +24,13 @@ import {
   ChevronRightIcon,
 } from "@chakra-ui/icons";
 
+import { IoWalletSharp } from "react-icons/io5";
+
+
 const PopoverTrigger: React.FC<{ children: React.ReactNode }> =
   OrigPopoverTrigger;
 
-export default function WithSubnavigation() {
+export default function WithSubNavigation() {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
@@ -75,7 +80,7 @@ export default function WithSubnavigation() {
           direction={"row"}
           spacing={6}
         >
-          <Button
+          {/* <Button
             as={"a"}
             fontSize={"sm"}
             fontWeight={400}
@@ -83,9 +88,10 @@ export default function WithSubnavigation() {
             href={"#"}
           >
             Sign In
-          </Button>
+          </Button> */}
           <Button
-            display={{ base: "none", md: "inline-flex" }}
+            // display={{ base: "none", md: "inline-flex" }}
+            leftIcon={<IoWalletSharp/>}
             fontSize={"sm"}
             fontWeight={600}
             color={"white"}
@@ -95,7 +101,7 @@ export default function WithSubnavigation() {
               bg: "pink.300",
             }}
           >
-            Sign Up
+            Connect Wallet
           </Button>
         </Stack>
       </Flex>
@@ -124,12 +130,15 @@ const DesktopNav = () => {
                 fontSize={"sm"}
                 fontWeight={500}
                 color={linkColor}
+                as="div"
                 _hover={{
                   textDecoration: "none",
                   color: linkHoverColor,
                 }}
               >
-                {navItem.label}
+                <NextLink href={navItem.href ?? "#"} passHref>
+                  {navItem.label}
+                </NextLink>
               </Link>
             </PopoverTrigger>
 
@@ -158,38 +167,40 @@ const DesktopNav = () => {
 
 const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
   return (
-    <Link
-      href={href}
-      role={"group"}
-      display={"block"}
-      p={2}
-      rounded={"md"}
-      _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
-    >
-      <Stack direction={"row"} align={"center"}>
-        <Box>
-          <Text
+    <NextLink href={href ?? "#"} passHref>
+      <Link
+        href={href}
+        role={"group"}
+        display={"block"}
+        p={2}
+        rounded={"md"}
+        _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
+      >
+        <Stack direction={"row"} align={"center"}>
+          <Box>
+            <Text
+              transition={"all .3s ease"}
+              _groupHover={{ color: "pink.400" }}
+              fontWeight={500}
+            >
+              {label}
+            </Text>
+            <Text fontSize={"sm"}>{subLabel}</Text>
+          </Box>
+          <Flex
             transition={"all .3s ease"}
-            _groupHover={{ color: "pink.400" }}
-            fontWeight={500}
+            transform={"translateX(-10px)"}
+            opacity={0}
+            _groupHover={{ opacity: "100%", transform: "translateX(0)" }}
+            justify={"flex-end"}
+            align={"center"}
+            flex={1}
           >
-            {label}
-          </Text>
-          <Text fontSize={"sm"}>{subLabel}</Text>
-        </Box>
-        <Flex
-          transition={"all .3s ease"}
-          transform={"translateX(-10px)"}
-          opacity={0}
-          _groupHover={{ opacity: "100%", transform: "translateX(0)" }}
-          justify={"flex-end"}
-          align={"center"}
-          flex={1}
-        >
-          <Icon color={"pink.400"} w={5} h={5} as={ChevronRightIcon} />
-        </Flex>
-      </Stack>
-    </Link>
+            <Icon color={"pink.400"} w={5} h={5} as={ChevronRightIcon} />
+          </Flex>
+        </Stack>
+      </Link>
+    </NextLink>
   );
 };
 
@@ -250,9 +261,11 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
         >
           {children &&
             children.map((child) => (
-              <Link key={child.label} py={2} href={child.href}>
-                {child.label}
-              </Link>
+              <NextLink href={child.href ?? "#"} passHref>
+                <Link key={child.label} py={2} href={child.href}>
+                  {child.label}
+                </Link>
+              </NextLink>
             ))}
         </Stack>
       </Collapse>
@@ -274,12 +287,12 @@ const NAV_ITEMS: Array<NavItem> = [
       {
         label: "Explore Design Work",
         subLabel: "Trending Design to inspire you",
-        href: "#",
+        href: "link1",
       },
       {
         label: "New & Noteworthy",
         subLabel: "Up-and-coming Designers",
-        href: "#",
+        href: "link2",
       },
     ],
   },
@@ -289,21 +302,21 @@ const NAV_ITEMS: Array<NavItem> = [
       {
         label: "Job Board",
         subLabel: "Find your dream design job",
-        href: "#",
+        href: "link3",
       },
       {
         label: "Freelance Projects",
         subLabel: "An exclusive list for contract work",
-        href: "#",
+        href: "link4",
       },
     ],
   },
   {
     label: "Learn Design",
-    href: "#",
+    href: "link5",
   },
   {
     label: "Hire Designers",
-    href: "#",
+    href: "link6",
   },
 ];
