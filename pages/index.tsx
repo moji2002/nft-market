@@ -1,11 +1,11 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
+import type { NextPage } from "next";
+import Head from "next/head";
 // import Image from 'next/image'
-import Nav from '../components/Nav'
-import Hero from '../components/Hero'
-import Feature from '../components/Feature'
-import Testimonials from '../components/Testimonials'
-import Footer from '../components/Footer'
+import Nav from "../components/Nav";
+import Hero from "../components/Hero";
+import Feature from "../components/Feature";
+import Testimonials from "../components/Testimonials";
+import Footer from "../components/Footer";
 
 const Home: NextPage = () => {
   return (
@@ -16,17 +16,15 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-       <Nav/>
-       <Hero/>
-       <Feature/>
-       <Testimonials/>
-       <Footer/>
+      <Nav />
+      <Hero />
+      <Feature />
+      <Testimonials />
+      <Footer />
 
-      <footer >
-       
-      </footer>
+      <footer></footer>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

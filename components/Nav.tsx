@@ -26,7 +26,6 @@ import {
 
 import { IoWalletSharp } from "react-icons/io5";
 
-
 const PopoverTrigger: React.FC<{ children: React.ReactNode }> =
   OrigPopoverTrigger;
 
@@ -91,7 +90,7 @@ export default function WithSubNavigation() {
           </Button> */}
           <Button
             // display={{ base: "none", md: "inline-flex" }}
-            leftIcon={<IoWalletSharp/>}
+            leftIcon={<IoWalletSharp />}
             fontSize={"sm"}
             fontWeight={600}
             color={"white"}
@@ -261,7 +260,7 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
         >
           {children &&
             children.map((child) => (
-              <NextLink  key={child.label} href={child.href ?? "#"} passHref>
+              <NextLink key={child.label} href={child.href ?? "#"} passHref>
                 <Link py={2} href={child.href}>
                   {child.label}
                 </Link>

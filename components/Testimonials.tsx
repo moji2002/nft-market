@@ -12,7 +12,6 @@ import {
 
 const Avatar: React.FC<{ children: React.ReactNode }> = OriginalAvatar;
 
-
 const Testimonial = ({ children }: { children: ReactNode }) => {
   return <Box>{children}</Box>;
 };
